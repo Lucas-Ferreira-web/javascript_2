@@ -6,11 +6,15 @@ function media() {
             throw Error("digite apenas numeros")
         } else {
             soma += arguments[i]
-            media = soma /  arguments.length
+            if(arguments.length === 1) {
+                media = soma / 2
+            } else {
+                media = soma /  arguments.length
+            }
         }
         
     }
     return media
 }
 
-console.log(media(4).toFixed(2))
+console.log(`A media dos valores é: ${media(2, "8", 11, 12).toFixed(2)}`)
