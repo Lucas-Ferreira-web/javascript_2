@@ -9,7 +9,7 @@ function media() {
             if(arguments.length === 1) {
                 media = soma / 2
             } else {
-                media = soma /  arguments.length
+                media = soma / arguments.length
             }
         }
         
@@ -17,4 +17,4 @@ function media() {
     return media
 }
 
-console.log(`A media dos valores é: ${media(2, "8", 11, 12).toFixed(2)}`)
+console.log(`A media dos valores é: ${media()}`)
