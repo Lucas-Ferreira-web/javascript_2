@@ -12,21 +12,31 @@
 
 
 function calcularImc(peso, altura){
-    let imc = peso / (altura**2)
-    if(typeof peso !== "number" || typeof altura !== "number" || imc === 0){
+    if(peso === undefined|| altura === undefined){
         throw Error("Passe os valores corretos!")
     }
-    return imc
+    return peso / (altura**2)
 }
 
-let resImc = calcularImc(54, 1.80).toFixed(2)
-console.log(resImc)
-
-function msg(parImc){
-    if(parImc >= 16 || parImc <= 16.9 ){
-        return "muito abaixo do peso"
+function msg(imc){
+    if(imc <= 16.9){
+        return "Muito abaixo do peso"
+    } else if (imc <= 18.4){
+        return "Abaixo do peso"
+    } else if (imc <= 24.9) {
+        return "Normal"
+    } else if (imc <= 29.9) {
+        return "Acima do peso"
+    } else if (imc <= 34.9){
+        return "Obsidade de grau I"
+    } else if (imc <= 40){
+        return "Obsidade de grau II"
+    } else {
+        return "Obsidade de grau III"
     }
 }
 
-console.log(msg(resImc))
+let imc = calcularImc(80, 1.75)
+console.log(imc)
+console.log(msg(imc))
 
