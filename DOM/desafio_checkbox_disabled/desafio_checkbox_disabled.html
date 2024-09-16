@@ -17,26 +17,29 @@
         <input type="text" id="txtNome" placeholder="nome"><br><br>
         <input type="text" id="txtEmail" placeholder="email"><br><br>
 
-        <input type="checkbox" id="contrato" onchange="enableOrDisableButton()" checked>
+        <input type="checkbox" id="contrato" onchange="enableOrDisableButton()">
         <label for="contrato">Li e aceito o seguinte contrato</label><br><br>
         <textarea name="" id="" cols="30" rows="10" readonly>Este contrato nos dá direito à ...</textarea><br><br>
         <input type="submit" id="cadastrar" value="cadastrar">
     </form>
 
     <script>
-            const checkbox = document.querySelector("#contrato")
-            const cadastrar = document.querySelector("#cadastrar")
-
-            function validar() {
-                if(checkbox.checked === true){
-                    cadastrar.disabled = false
-                } else {
-                    cadastrar.disabled = true
-                }
-            }
             
-            function enableOrDisableButton(){
-                validar()
+            const btn = document.querySelector('form input[type="submit"]')
+            btn.disabled = true
+
+
+            function enableOrDisableButton() {
+                const contrato = document.querySelector("#contrato")
+                let checked = contrato.checked
+
+                // if(checked){
+                //     btn.disabled = false
+                // } else {
+                //     btn.disabled = true
+                // }
+
+                btn.disabled = !checked
             }
     </script>
 </body>
