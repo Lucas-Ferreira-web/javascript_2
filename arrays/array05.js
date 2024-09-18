@@ -30,4 +30,4 @@ console.log(arr)
 // let arr3 = arr.splice(2)
 let arr3 = arr.splice(2, 4, "ola mundo", 10, 100, 1000)
 console.log(arr)
-console.log(arr3)
+console.log(arr3) // sempre retorna os valores removidos
