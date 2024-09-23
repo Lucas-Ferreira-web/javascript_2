@@ -136,6 +136,33 @@
       <!--JavaScript at end of body for optimized loading-->
       <!-- <script type="text/javascript" src="js/materialize.min.js"></script> -->
       
+      <script src="js/calc.js"></script>
+      <script>
+
+        (function(){
+          let trs = document.querySelectorAll("tbody tr")
+          let x = 0
+          let media = 0
+
+          while (trs[x]) {
+            let tds = trs[x].querySelectorAll("td")
+
+            media = avarege(
+              parseFloat(tds[1].textContent),
+              parseFloat(tds[2].textContent),
+              parseFloat(tds[3].textContent),
+              parseFloat(tds[4].textContent),
+            )
+
+            x++
+
+            tds[5].textContent = media
+          }
+        })()
+        
+
+        
+      </script>
 
     </body>
   </html>
