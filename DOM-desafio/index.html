@@ -30,11 +30,11 @@
         <thead>
           <tr>
               <th>Nome</th>
-              <th>Nota 1</th>
-              <th>Nota 2</th>
-              <th>Nota 3</th>
-              <th>Nota 4</th>
-              <th>Média</th>
+              <th aluno-nota="n1">Nota 1</th>
+              <th aluno-nota="n2">Nota 2</th>
+              <th aluno-nota="n3">Nota 3</th>
+              <th aluno-nota="n4">Nota 4</th>
+              <th aluno-nota="media">Média</th>
               
           </tr>
         </thead>
@@ -139,7 +139,33 @@
       <script src="js/calc.js"></script>
       <script>
 
+       
+
         (function(){
+
+          function pegarNotas(indice){
+            const trHeader = document.querySelector("thead tr")
+            const thsHeader = trHeader.querySelectorAll("th")
+
+            const th = trHeader.querySelector(`[aluno-nota="${indice}"]`)
+            console.log(th)
+
+            //thsHeader.indexOf(th)
+            //const i = Array.prototype.indexOf.call(thsHeader, th)
+            //const i = Array.from(thsHeader).indexOf(th)
+            const i = [...thsHeader].indexOf(th)
+            return i
+
+          }
+
+          const INDICES_NOTAS = {
+            n1: pegarNotas("n1"),
+            n2: pegarNotas("n2"),
+            n3: pegarNotas("n3"),
+            n4: pegarNotas("n4"),
+            media: pegarNotas("media")
+          }
+
           let trs = document.querySelectorAll("tbody tr")
           let x = 0
           let media = 0
@@ -148,15 +174,15 @@
             let tds = trs[x].querySelectorAll("td")
 
             media = avarege(
-              parseFloat(tds[1].textContent),
-              parseFloat(tds[2].textContent),
-              parseFloat(tds[3].textContent),
-              parseFloat(tds[4].textContent),
+              parseFloat(tds[INDICES_NOTAS.n1].textContent),
+              parseFloat(tds[INDICES_NOTAS.n2].textContent),
+              parseFloat(tds[INDICES_NOTAS.n3].textContent),
+              parseFloat(tds[INDICES_NOTAS.n4].textContent),
             )
 
             x++
 
-            tds[5].textContent = media.toFixed(2)
+            tds[INDICES_NOTAS.media].textContent = media.toFixed(2)
           }
         })()
         
