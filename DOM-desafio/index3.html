@@ -67,7 +67,19 @@
         alunos.forEach(aluno => {
             aluno.media = avarege(aluno.n1, aluno.n2, aluno.n3, aluno.n4)
         })
-        console.log(alunos)
+
+        const html = alunos.map(aluno => `
+            <tr>
+                <td>${aluno.nome}</td>
+                <td>${aluno.n1}</td>
+                <td>${aluno.n2}</td>
+                <td>${aluno.n3}</td>
+                <td>${aluno.n4}</td>
+                <td>${aluno.media}</td>
+            </tr>
+        `)
+
+        document.querySelector("tbody").innerHTML = html
 
     </script>
 
