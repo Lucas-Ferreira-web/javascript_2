@@ -10,24 +10,26 @@
 <body>
     <h1>teste DOM</h1>
 
-    <div class="container"></div>
-    <p>item 1</p>
-    <p>Lorem <a href="#"> link </a>.</p>
-    <p>teste 2</p>
+    <div class="container">
+        <p>item 1</p>
+        <p>Lorem <a href="#"> link </a>.</p>
+        <p>teste 2</p>
 
-    <h2>lista</h2>
-    <ul>
-        <li>item 1</li>
-        <li>item 2
-            <ul>
-                <li>item 2.a</li>
-                <li>item 2.b</li>
-                <li>item 2.c</li>
-                <li> <!-- wqerr --></li>
-            </ul>
-        </li>
-        <li>item <a href="@"> link </a></li>
-    </ul>
+        <h2>lista</h2>
+        <ul>
+            <li>item 1</li>
+            <li>item 2
+                <ul>
+                    <li>item 2.a</li>
+                    <li>item 2.b</li>
+                    <li>item 2.c</li>
+                    <li> <!-- wqerr --></li>
+                </ul>
+            </li>
+            <li>item <a href="@"> link </a></li>
+        </ul>
+    </div>
+
 
     <script>
         const title = document.createElement("h1")
@@ -45,7 +47,12 @@
 
         console.log(title)
 
-        document.body.appendChild(title)
+        // metodos append e prepend aceita mais de um paramentro, iclusive textos.
+
+        // document.body.appendChild(title)
+        // document.querySelector(".container").appendChild(title)
+        // document.querySelector(".container").append(title)
+        document.querySelector(".container").prepend(title, "texto novooo")
     </script>
 </body>
 
