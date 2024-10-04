@@ -122,6 +122,20 @@
         em.textContent = "texto com enfase"
 
         container2.insertAdjacentElement("beforeend", em)
+
+        // metodo remove
+
+        // não vai funcionar no IE
+
+        // list.remove()
+        //parentNode.removeChild(list)
+        list.parentElement.removeChild(list)
+
+        const parent = document.body
+        const novo = container.querySelector("h1")
+        const old = document.querySelector("h1")
+        parent.replaceChild(novo, old)
+
     </script>
 </body>
 
