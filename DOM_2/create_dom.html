@@ -53,6 +53,27 @@
         // document.querySelector(".container").appendChild(title)
         // document.querySelector(".container").append(title)
         document.querySelector(".container").prepend(title, "texto novooo")
+
+        const title2 = document.createElement("h1")
+        title2.textContent = "titulo 2"
+
+        const list = document.querySelector("ul")
+
+        document.querySelector(".container").insertBefore(title2, list)
+
+        // inserindo elementos do jeito do metodo append, mas dando suporte ao IE
+        const container = document.querySelector(".container")
+
+        container.insertBefore(title2, container.firstChild)
+
+        let subLevel = document.querySelector("ul ul")
+        subLevel = subLevel.cloneNode(true)
+
+        const h2 = document.querySelector("h2")
+
+        container.insertBefore(subLevel, h2.nextElementSibling)
+
+
     </script>
 </body>
 
