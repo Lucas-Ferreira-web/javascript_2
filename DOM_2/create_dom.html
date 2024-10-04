@@ -73,7 +73,16 @@
 
         container.insertBefore(subLevel, h2.nextElementSibling)
 
+        // metodos after e before, mas não funciona no IE, aceita mais de um parametro
 
+        const segundoParagrafo = container.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling
+        console.log(segundoParagrafo)
+
+        // segundoParagrafo.before("texto inserido com after", "outro texto")
+        const span = document.createElement("span")
+        span.textContent = "span dinamica"
+
+        segundoParagrafo.after(span)
     </script>
 </body>
 
