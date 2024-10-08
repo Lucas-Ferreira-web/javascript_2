@@ -80,7 +80,14 @@
         //Mova a última li de orignal para alvo (mas antes da primeira li).
         //Em outras palavras, a última li da original deve virar a primeira li de alvo
 
+        const item3 = document.querySelector(".original ul").lastElementChild
+
+        alvo.insertBefore(item3, alvo.lastChild.nextSibling)
+
+
         //altere o texto da primeira li de .alvo para "item 0"
+
+        document.querySelector(".alvo ul").firstElementChild.textContent = "item 0"
 
         //clone a ul de .original e a inclua na primeira li de .alvo
 
