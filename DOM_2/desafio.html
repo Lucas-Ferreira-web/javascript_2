@@ -74,14 +74,11 @@
         const item2 = document.createElement("li")
         item2.textContent = "item 2"
 
-        const alvo = document.querySelector(".alvo")
-        alvo.querySelector("ul").appendChild(item2)
+        const alvo = document.querySelector(".alvo ul")
+        alvo.appendChild(item2)
 
         //Mova a última li de orignal para alvo (mas antes da primeira li).
         //Em outras palavras, a última li da original deve virar a primeira li de alvo
-        const ulOriginal = document.querySelector(".original ul").firstChild
-        console.log(ulOriginal)
-        alvo.insertBefore(ulOriginal, alvo.querySelector("ul"))
 
         //altere o texto da primeira li de .alvo para "item 0"
 
