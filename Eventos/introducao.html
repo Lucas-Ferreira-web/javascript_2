@@ -9,9 +9,11 @@
 
 <body>
     <h1>Eventos</h1>
-    <button id="btn1">botão 1</button>
-    <button id="btn2">botão 2</button>
-    <button id="btn3">botão 3</button>
+    <div id="container"><button id="btn1">botão 1</button>
+        <button id="btn2">botão 2</button>
+        <button id="btn3">botão 3</button>
+    </div>
+
 
     <script>
         const btn1 = document.getElementById("btn1")
@@ -33,6 +35,20 @@
         btn2.addEventListener("click", function () {
             console.log("click btn2 função anonima")
         })
+
+        // fase de borbulhamento
+        btn3.addEventListener("click", function () {
+            console.log("clicou no btn3")
+        }, false)
+
+        document.addEventListener("click", function () {
+            console.log("clicou no document")
+        }, false)
+
+        const container = document.getElementById("container")
+        container.addEventListener("click", function () {
+            console.log("clicou no container")
+        }, true)
     </script>
 </body>
 
