@@ -37,7 +37,9 @@
         })
 
         // fase de borbulhamento
-        btn3.addEventListener("click", function () {
+        btn3.addEventListener("click", function (event) {
+            console.log(event)
+            event.stopPropagation()
             console.log("clicou no btn3")
         }, false)
 
