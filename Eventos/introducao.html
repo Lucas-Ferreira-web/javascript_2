@@ -50,8 +50,11 @@
             console.log("clicou no btn3")
         }, false)
 
-        document.addEventListener("click", function () {
+        document.addEventListener("click", function (e) {
             console.log("clicou no document")
+            console.log(e.target)
+            console.log(e.currentTarget)
+            console.log(this)
         }, false)
 
         const container = document.getElementById("container")
@@ -71,11 +74,15 @@
         // })
 
         container2.addEventListener("click", function (e) {
-            e.stopPropagation()
+            // e.stopPropagation()
+            //e.target sempre aponta para o alvo da ação
+            console.log(e.target)
+            //e.currentTraget é o elemento q foi atrelado a função
+            console.log(e.currentTarget)
+            console.log(this)
             if (e.target.nodeName === "BUTTON") {
-                console.log(e.target)
+                // console.log(e.target)
             }
-
         })
     </script>
 </body>
