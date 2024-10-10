@@ -1,0 +1,57 @@
+@charset "utf-8";
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    border: 2px solid;
+    padding: 1em;
+    flex-basis: 500px;
+    height: 400px;
+    /* font-size: 20px; */
+}
+
+.title {
+    margin-bottom: 20px;
+}
+
+label,
+input,
+textarea {
+    font-size: 1.35em;
+    margin-bottom: .75em;
+}
+
+input.titulo {
+    width: 100%;
+}
+
+textarea {
+    width: 100%;
+    height: 140px;
+}
+
+#validar {
+    width: max-content;
+    margin-bottom: .75em;
+}
+
+#button button {
+    padding: 10px 25px;
+}
+
+#button {
+    text-align: right;
+}
