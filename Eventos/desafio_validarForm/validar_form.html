@@ -13,17 +13,35 @@
         <h1 class="title">Cadastre uma tarefa</h1>
 
         <p><label for="titulo">Titulo:</label></p>
-        <p><input class="titulo" type="text" name="" id="titulo"></p>
+        <p><input class="tituloIni" type="text" name="" id="titulo"></p>
 
         <p><label for="descricao">Descrição da tarefa:</label></p>
         <p><textarea name="" id="descricao"></textarea></p>
 
 
-        <p id="validar"><input type="checkbox" name="" id="termos"> comprometo-me a entregar está tarefa o quanto antes
+        <p id="validar"><input type="checkbox" name="" id="termos" checked> comprometo-me a entregar está tarefa o
+            quanto antes
         </p>
 
-        <p id="button"><button>Adicionar</button></p>
+        <p id="button">
+            <button> Adicionar </button>
+        </p>
     </div>
+
+    <script>
+        const checkbox = document.getElementById("termos")
+        const btn = document.querySelector("button")
+
+        checkbox.addEventListener("change", function () {
+            if (checkbox.checked === false) {
+                btn.disabled = true
+            } else {
+                btn.disabled = false
+            }
+        })
+
+
+    </script>
 </body>
 
 </html>
