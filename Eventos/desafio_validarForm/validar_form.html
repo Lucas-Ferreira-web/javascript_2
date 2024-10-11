@@ -16,7 +16,8 @@
         <p><input class="tituloIni" type="text" name="" id="titulo"></p>
 
         <p><label for="descricao">Descrição da tarefa:</label></p>
-        <p><textarea name="" id="descricao"></textarea></p>
+        <p id="pTextArea"><textarea name="" id="descricao" maxlength="255" placeholder="wefkwhfkwhwkrhw"></textarea></p>
+        <div id="res"></div>
 
 
         <p id="validar"><input type="checkbox" name="" id="termos" checked> comprometo-me a entregar está tarefa o
@@ -31,14 +32,27 @@
     <script>
         const checkbox = document.getElementById("termos")
         const btn = document.querySelector("button")
+        const textarea = document.querySelector("textarea")
 
         checkbox.addEventListener("change", function () {
             if (checkbox.checked === false) {
                 btn.disabled = true
+                btn.style.backgroundColor = ""
             } else {
                 btn.disabled = false
+                btn.style.backgroundColor = "red"
             }
         })
+
+        textarea.insertAdjacentHTML("beforeend", textarea.querySelector("textarea").maxLength)
+
+        textarea.addEventListener("click", function () {
+            document.getElementById("res").insertAdjacentHTML("beforeend", `<p>caracter ${textarea.maxLength - textarea.textLength}</p>`)
+            s
+        })
+
+        // console.log(textarea.querySelector("textarea").maxLength.value - textarea.querySelector("textarea").textLength.value)
+
 
 
     </script>
