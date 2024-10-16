@@ -5,7 +5,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="estilo.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .container {
+            border: 2px solid;
+            padding: 1em;
+            /* flex-basis: 510px; */
+            width: 550px;
+            height: 435px;
+            /* font-size: 20px; */
+            background-color: rgb(100, 107, 237);
+        }
+
+        .title {
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-top: .75em;
+        }
+
+        label,
+        input {
+            box-sizing: border-box;
+            font-size: 1.3em;
+            padding: 12px;
+            width: 100%;
+        }
+
+        /* .tituloIni {
+    width: 100%;
+} */
+
+        textarea {
+            /* width: calc(100% - 1.25em); */
+            /* width: min-content; */
+            box-sizing: border-box;
+            padding: 1em;
+            width: 100%;
+            height: 140px;
+            font-size: 1.3em;
+        }
+
+        #output {
+            margin: 0px;
+            padding: 0px 12px;
+        }
+
+        #validar input {
+            width: max-content;
+            margin-bottom: .75em;
+        }
+
+        #validar input {
+            padding: 10px;
+        }
+
+        #button button {
+            padding: 10px 25px;
+            font-weight: 800px;
+            text-transform: uppercase;
+            background-color: #ccc;
+            border-radius: 5px;
+        }
+
+        #button {
+            text-align: right;
+        }
+    </style>
 </head>
 
 <body>
@@ -16,13 +98,15 @@
         <p><input class="tituloIni" type="text" name="" id="titulo"></p>
 
         <p><label for="descricao">Descrição da tarefa:</label></p>
-        <p id="pTextArea"><textarea name="" id="descricao" maxlength="255" placeholder="wefkwhfkwhwkrhw"></textarea></p>
-        <div id="res"></div>
+        <p id="pTextArea"><textarea name="" id="descricao" maxlength="255"></textarea></p>
+
+        <p id="output"><output>dsfssdfsfs</output></p>
 
 
         <p id="validar"><input type="checkbox" name="" id="termos" checked> comprometo-me a entregar está tarefa o
             quanto antes
         </p>
+
 
         <p id="button">
             <button> Adicionar </button>
@@ -30,28 +114,30 @@
     </div>
 
     <script>
-        const checkbox = document.getElementById("termos")
-        const btn = document.querySelector("button")
-        const textarea = document.querySelector("textarea")
 
-        checkbox.addEventListener("change", function () {
-            if (checkbox.checked === false) {
-                btn.disabled = true
-                btn.style.backgroundColor = ""
-            } else {
-                btn.disabled = false
-                btn.style.backgroundColor = "red"
-            }
-        })
+        (function () {
+            const title = document.querySelector("p #titulo")
+            const checkbox = document.getElementById("termos")
+            const btn = document.querySelector("button")
+            const textarea = document.querySelector("textarea")
 
-        textarea.insertAdjacentHTML("beforeend", textarea.querySelector("textarea").maxLength)
+            checkbox.addEventListener("change", function () {
+                if (checkbox.checked === false) {
+                    btn.disabled = true
+                } else {
+                    btn.disabled = false
+                }
+            })
 
-        textarea.addEventListener("click", function () {
-            document.getElementById("res").insertAdjacentHTML("beforeend", `<p>caracter ${textarea.maxLength - textarea.textLength}</p>`)
-            s
-        })
+            btn.addEventListener("click", function () {
+                if ((title.value === "")) {
+                    window.alert("digite um titulo antes de enviar")
+                } else (
+                    window.alert("enviado com sucesso!")
+                )
+            })
 
-        // console.log(textarea.querySelector("textarea").maxLength.value - textarea.querySelector("textarea").textLength.value)
+        })()
 
 
 
