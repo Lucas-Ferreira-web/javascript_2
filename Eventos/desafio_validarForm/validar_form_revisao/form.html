@@ -28,10 +28,10 @@
                     Descrição da tarefa
                 </label>
                 <textarea id="txtDescricao" rows="5" maxlength="255"></textarea>
-                <div id="contador"> <span>255</span> caracteres</div>
+                <div id="contador" style="display: none;"> <span></span> caracteres</div>
 
                 <label>
-                    <input type="checkbox" name="" id="chkAceito" checked>
+                    <input type="checkbox" name="" id="chkAceito">
                     Comprometo-me a entregar esta tarefa o quanto antes
                 </label>
 
@@ -41,7 +41,7 @@
         </div>
 
         <div id="feedbackMessage">
-            <p>aa</p>
+            <p></p>
             <button><span class="fa fa-close"></span></button>
 
         </div>
@@ -54,7 +54,7 @@
             const title = document.querySelector("#txtTitulo")
             const checkbox = document.querySelector("#chkAceito")
             const btn = document.querySelector("#btn")
-            const textarea = document.querySelector("textarea")
+
             const formCadastro = document.querySelector(".formCadastro")
 
             //evento atrelado ao click do botão, menos semantico
@@ -67,11 +67,53 @@
             formCadastro.addEventListener("submit", function (e) {
                 if (!title.value) {
                     e.preventDefault()
-                    alert("digite um titulo antes de enviar")
+                    showErrorMessage("Preecha todos os campos!", function () {
+                        title.focus();
+                    })
 
-                    title.focus();
+
                 }
             })
+
+            const feedbackMessage = document.getElementById("feedbackMessage")
+            const feedbackMessageCloseBtn = feedbackMessage.getElementsByTagName("button")[0]
+
+            function showErrorMessage(msg, cb) {
+                // alert(msg)
+
+                //cuidado pode "matar" a class existente usando o settAttribute
+                // feedbackMessage.setAttribute("class", "show")
+                feedbackMessage.classList.add("show")
+                feedbackMessage.getElementsByTagName("p")[0].textContent = msg
+
+                feedbackMessageCloseBtn.focus()
+
+                function hideErrorMessage() {
+                    feedbackMessage.classList.remove("show")
+
+                    feedbackMessageCloseBtn.removeEventListener("click", hideErrorMessage)
+                    feedbackMessageCloseBtn.removeEventListener("keyup", pressedKeyboardOnBtn)
+
+
+                    if (typeof cb === "function") {
+                        cb()
+                    }
+                }
+
+                function pressedKeyboardOnBtn(e) {
+                    // console.log(e.keyCode)
+                    if (e.keyCode === 27) {
+                        hideErrorMessage()
+                    }
+                }
+
+                feedbackMessageCloseBtn.addEventListener("click", hideErrorMessage)
+
+                feedbackMessageCloseBtn.addEventListener("keyup", pressedKeyboardOnBtn)
+
+            }
+
+
 
             checkbox.addEventListener("change", function () {
                 if (checkbox.checked === false) {
@@ -79,6 +121,43 @@
                 } else {
                     btn.disabled = false
                 }
+            })
+
+            const textDescricao = document.getElementById("txtDescricao")
+            const contadorContainer = document.getElementById("contador")
+            let resta = contadorContainer.getElementsByTagName("span")[0]
+            const maxima = textDescricao.maxLength
+
+            // contadorContainer.removeAttribute("style")
+            //estilo.propriedade = "valor da propriedade"
+            contadorContainer.style.display = "block"
+
+            //melhorando o codigo
+
+            // resta.textContent = maxima
+            mostraCarcteres(maxima)
+
+            function checkLangth() {
+                let numerosLetrasDigitados = this.value.length
+                let caracteresRestantes = parseInt(maxima) - parseInt(numerosLetrasDigitados)
+
+                //melhorando o codigo
+
+                // resta.textContent = caracteresRestantes
+                mostraCarcteres(caracteresRestantes)
+            }
+
+            function mostraCarcteres(n) {
+                resta.textContent = n
+            }
+
+            textDescricao.addEventListener("input", checkLangth)
+
+            btn.disabled = true
+
+            const chkAceito = document.getElementById("chkAceito")
+            chkAceito.addEventListener("change", function () {
+                btn.disabled = !this.checked
             })
 
 
