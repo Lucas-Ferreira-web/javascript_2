@@ -5,7 +5,7 @@
     const itemInput = document.querySelector("#item-input")
     const todoAddForm = document.querySelector("#todo-add")
     const ul = document.querySelector("#todo-list")
-    const lis = ul.getElementsByTagName("li")
+    //const lis = ul.getElementsByTagName("li")
 
     //estrutura de dados
     let arrTasks = [
@@ -24,10 +24,6 @@
     function addEventLi(li) {
         li.addEventListener("click", function () {
             console.log(this)
-            console.log(this.textContent)
-            console.log(this.innerText)
-            console.log(this.innerHTML)
-            console.log(this.outerHTML)
         })
     }
 
@@ -58,7 +54,7 @@
         itemInput.focus()
     });
 
-    [...lis].forEach(li => {
-        addEventLi(li)
+    arrTasks.forEach(task => {
+
     });
 })()
