@@ -27,16 +27,34 @@
         })
     }
 
-    function addTask(task) {
+    function generationLiTask(obj) {
         const li = document.createElement("li")
         li.className = "todo-item"
         const p = document.createElement("p")
         p.className = "task-name"
-        p.textContent = task
+        p.textContent = obj.name
         li.appendChild(p)
-        ul.appendChild(li)
-
         addEventLi(li)
+        return li
+
+    }
+
+    function renderTasks() {
+        ul.innerHTML = ""
+        arrTasks.forEach(task => {
+            ul.appendChild(generationLiTask(task))
+        });
+
+
+    }
+
+    function addTask(task) {
+
+        arrTasks.push({
+            name: task,
+            createAt: Date.now(),
+            completed: false
+        })
 
     }
 
@@ -50,11 +68,12 @@
         //     </li>
         // `
         addTask(itemInput.value)
+        renderTasks()
+
         limpar(itemInput)
         itemInput.focus()
     });
 
-    arrTasks.forEach(task => {
+    renderTasks()
 
-    });
 })()
