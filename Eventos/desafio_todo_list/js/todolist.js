@@ -36,7 +36,6 @@
         li.appendChild(p)
         addEventLi(li)
         return li
-
     }
 
     function renderTasks() {
@@ -44,32 +43,22 @@
         arrTasks.forEach(task => {
             ul.appendChild(generationLiTask(task))
         });
-
-
     }
 
     function addTask(task) {
-
         arrTasks.push({
             name: task,
             createAt: Date.now(),
             completed: false
         })
-
     }
 
     //codigo
     todoAddForm.addEventListener("submit", function (e) {
         e.preventDefault()
         console.log(itemInput.value)
-        // ul.innerHTML += `
-        //     <li class="todo-item">
-        //             <p class="task-name">${itemInput.value}</p>
-        //     </li>
-        // `
         addTask(itemInput.value)
         renderTasks()
-
         limpar(itemInput)
         itemInput.focus()
     });
