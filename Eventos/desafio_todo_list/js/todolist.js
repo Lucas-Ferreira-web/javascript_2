@@ -5,18 +5,39 @@
     const itemInput = document.querySelector("#item-input")
     const todoAddForm = document.querySelector("#todo-add")
     const ul = document.querySelector("#todo-list")
-    //const lis = ul.getElementsByTagName("li")
+    const lis = ul.getElementsByTagName("li")
 
     //estrutura de dados
-    let arrTasks = [
-        {
-            name: "task1",
-            createAt: Date.now(),
-            completed: false
-        }
-    ]
+    const arrTasks = getSaveData()
 
     //funções
+    function getSaveData() {
+        let taskData = localStorage.getItem("tasks")
+        taskData = JSON.parse(taskData)
+
+        return taskData.length ? taskData : [
+            {
+                name: "task1",
+                createAt: Date.now(),
+                completed: false
+            },
+
+            {
+                name: "task2",
+                createAt: Date.now(),
+                completed: true
+            }
+        ]
+    }
+
+    function setNewData() {
+        localStorage.setItem("tasks", JSON.stringify(arrTasks))
+    }
+
+    setNewData()
+
+    // setNewData()
+
     function limpar(item) {
         item.value = ""
     }
@@ -36,7 +57,8 @@
 
 
         checkBtn.className = "button-check"
-        checkBtn.innerHTML = '<i class="fas fa-check displayNone"></i>'
+        checkBtn.innerHTML = `
+            <i class="fas fa-check ${obj.completed ? "" : "displayNone"}" data-action="checkBtn"></i>`
         checkBtn.setAttribute("data-action", "checkBtn")
         li.appendChild(checkBtn)
 
@@ -55,6 +77,7 @@
         const editInput = document.createElement("input")
         editInput.setAttribute("type", "text")
         editInput.className = "editInput"
+        editInput.value = obj.name
         containerEdit.appendChild(editInput)
 
         const editContainerBtn = document.createElement("button")
@@ -100,11 +123,73 @@
             createAt: Date.now(),
             completed: false
         })
+
+        setNewData()
     }
 
     function clickedUl(e) {
-        console.log(e.target)
-        console.log(e.target.getAttribute("data-action"))
+        // console.log(e.target.getAttribute("data-action"))
+        const dataAction = e.target.getAttribute("data-action")
+
+        if (!dataAction) return
+
+        let currentLi = e.target
+        while (currentLi.nodeName !== "LI") {
+            currentLi = currentLi.parentElement
+        }
+
+        const currentLiIndex = [...lis].indexOf(currentLi)
+
+        const actions = {
+            editBtn: function editBtn() {
+                const containerEdit = currentLi.querySelector(".editContainer");
+
+                [...ul.querySelectorAll(".editContainer")].forEach(container => {
+                    container.removeAttribute("style")
+                });
+
+                containerEdit.style.display = "flex";
+            },
+
+            deleteBtn: function deleteBtn() {
+                arrTasks.splice(currentLiIndex, 1)
+                renderTasks()
+                setNewData()
+                // currentLi.remove()
+                // currentLi.parentElement.removeChild(currentLi)
+            },
+
+            editContainerBtn: function () {
+                const val = currentLi.querySelector(".editInput").value
+                currentLi.querySelector(".editInput").focus()
+                arrTasks[currentLiIndex].name = val
+                renderTasks()
+                setNewData()
+            },
+
+            cancelContainerBtn: function () {
+                currentLi.querySelector(".editContainer").removeAttribute("style")
+
+                currentLi.querySelector(".editInput").value = arrTasks[currentLiIndex].name
+            },
+
+            checkBtn: function () {
+                arrTasks[currentLiIndex].completed = !arrTasks[currentLiIndex].completed
+
+                // if (arrTasks[currentLiIndex].completed) {
+                //     currentLi.querySelector(".fa-check").classList.remove("displayNone")
+                // } else {
+                //     currentLi.querySelector(".fa-check").classList.add("displayNone")
+                // }
+                setNewData()
+                renderTasks()
+            }
+        }
+
+
+        if (actions[dataAction]) {
+            actions[dataAction]()
+        }
 
     }
 
