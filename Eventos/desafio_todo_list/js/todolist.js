@@ -29,11 +29,55 @@
 
     function generationLiTask(obj) {
         const li = document.createElement("li")
-        li.className = "todo-item"
         const p = document.createElement("p")
+        const checkBtn = document.createElement("button")
+        const editBtn = document.createElement("i")
+        const deleteBtn = document.createElement("i")
+
+
+        checkBtn.className = "button-check"
+        checkBtn.innerHTML = '<i class="fas fa-check displayNone"></i>'
+        li.appendChild(checkBtn)
+
+        li.className = "todo-item"
         p.className = "task-name"
         p.textContent = obj.name
         li.appendChild(p)
+
+        editBtn.className = "fas fa-edit"
+        li.appendChild(editBtn)
+
+        const containerEdit = document.createElement("div")
+        containerEdit.className = "editContainer"
+
+        const editInput = document.createElement("input")
+        editInput.setAttribute("type", "text")
+        editInput.className = "editInput"
+        containerEdit.appendChild(editInput)
+
+        const editContainerBtn = document.createElement("button")
+        editContainerBtn.className = "editButton"
+        editContainerBtn.textContent = "Edit"
+        containerEdit.appendChild(editContainerBtn)
+
+        const cancelContainerBtn = document.createElement("button")
+        cancelContainerBtn.className = "cancelButton"
+        cancelContainerBtn.textContent = "Cancel"
+        containerEdit.appendChild(cancelContainerBtn)
+
+        li.appendChild(containerEdit)
+
+        deleteBtn.className = "fas fa-trash-alt"
+        li.appendChild(deleteBtn)
+
+        cancelContainerBtn.addEventListener("click", function () {
+            containerEdit.style.display = "none"
+        })
+
+        editBtn.addEventListener("click", function () {
+            containerEdit.style.display = "flex"
+        })
+
         addEventLi(li)
         return li
     }
@@ -54,6 +98,7 @@
     }
 
     //codigo
+
     todoAddForm.addEventListener("submit", function (e) {
         e.preventDefault()
         console.log(itemInput.value)
@@ -64,5 +109,4 @@
     });
 
     renderTasks()
-
 })()
