@@ -21,11 +21,11 @@
         item.value = ""
     }
 
-    function addEventLi(li) {
-        li.addEventListener("click", function () {
-            console.log(this)
-        })
-    }
+    // function addEventLi(li) {
+    //     li.addEventListener("click", function () {
+    //         console.log(this)
+    //     })
+    // }
 
     function generationLiTask(obj) {
         const li = document.createElement("li")
@@ -37,6 +37,7 @@
 
         checkBtn.className = "button-check"
         checkBtn.innerHTML = '<i class="fas fa-check displayNone"></i>'
+        checkBtn.setAttribute("data-action", "checkBtn")
         li.appendChild(checkBtn)
 
         li.className = "todo-item"
@@ -45,6 +46,7 @@
         li.appendChild(p)
 
         editBtn.className = "fas fa-edit"
+        editBtn.setAttribute("data-action", "editBtn")
         li.appendChild(editBtn)
 
         const containerEdit = document.createElement("div")
@@ -58,27 +60,30 @@
         const editContainerBtn = document.createElement("button")
         editContainerBtn.className = "editButton"
         editContainerBtn.textContent = "Edit"
+        editContainerBtn.setAttribute("data-action", "editContainerBtn")
         containerEdit.appendChild(editContainerBtn)
 
         const cancelContainerBtn = document.createElement("button")
         cancelContainerBtn.className = "cancelButton"
         cancelContainerBtn.textContent = "Cancel"
+        cancelContainerBtn.setAttribute("data-action", "cancelContainerBtn")
         containerEdit.appendChild(cancelContainerBtn)
 
         li.appendChild(containerEdit)
 
         deleteBtn.className = "fas fa-trash-alt"
+        deleteBtn.setAttribute("data-action", "deleteBtn")
         li.appendChild(deleteBtn)
 
-        cancelContainerBtn.addEventListener("click", function () {
-            containerEdit.style.display = "none"
-        })
+        // cancelContainerBtn.addEventListener("click", function () {
+        //     containerEdit.style.display = "none"
+        // })
 
-        editBtn.addEventListener("click", function () {
-            containerEdit.style.display = "flex"
-        })
+        // editBtn.addEventListener("click", function () {
+        //     containerEdit.style.display = "flex"
+        // })
 
-        addEventLi(li)
+        // addEventLi(li)
         return li
     }
 
@@ -97,6 +102,12 @@
         })
     }
 
+    function clickedUl(e) {
+        console.log(e.target)
+        console.log(e.target.getAttribute("data-action"))
+
+    }
+
     //codigo
 
     todoAddForm.addEventListener("submit", function (e) {
@@ -107,6 +118,8 @@
         limpar(itemInput)
         itemInput.focus()
     });
+
+    ul.addEventListener("click", clickedUl)
 
     renderTasks()
 })()
