@@ -15,7 +15,7 @@
         let taskData = localStorage.getItem("tasks")
         taskData = JSON.parse(taskData)
 
-        return taskData.length ? taskData : [
+        return taskData && taskData.length ? taskData : [
             {
                 name: "task1",
                 createAt: Date.now(),
