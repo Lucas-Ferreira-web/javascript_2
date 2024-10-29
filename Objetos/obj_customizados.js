@@ -33,5 +33,3 @@ task2.changeName("novo nome")
 
 // console.log(task1)
 console.log(task2)
-
-const tarafa1 = new Task()
