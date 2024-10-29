@@ -1,6 +1,7 @@
 // uma função construtoras é feita pra criar objetos, para usar as fnções construtoras precisa obrigatoriamente usar o operador "new"
 
 function Task(name) {
+    "use strict"
     let _name = name
 
     // this.name = name
