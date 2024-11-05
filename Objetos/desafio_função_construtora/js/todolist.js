@@ -9,14 +9,14 @@
         //  - name - string - obrigatório,
         this.name = name
         //  - completed - boolean - opcional, false é o default, 
-        this.completed = completed
+        this.completed = completed || false
         //  - createdAt - timestamp - opcional, timestamp atual é o valor default) 
-        this.createdAt = createdAt
+        this.createdAt = createdAt || Date.Now
         //  - updatedAt - timestamp - opcional, null é o valor default
         this.updatedAt = updatedAt
         // o objeto retornado por essa funcao deve ter um método chamado toggleDone, que deve inverter o boolean completed
-        this.toggleDone = function toggleDone() {
-            return this.completed = true
+        this.toggleDone = function(){
+            this.completed = !this.completed
         }
     }
 
@@ -43,14 +43,10 @@
 
     // a partir de um array de objetos literais, crie um array contendo instancias de Tasks. 
     // Essa array deve chamar arrInstancesTasks
-    const nomes = arrTasks.forEach(obj => {
-        console.log(obj.name)
+    const arrInstancesTasks = arrTasks.map( task => {
+        const {name, completed, createdAt, updatedAt} = task
+        return new Task(name, completed, createdAt, updatedAt)
     })
-    console.log(nomes)
-    const arrInstancesTasks = [new Task([...arrTasks].forEach(obj => {
-        return obj.name
-    }))]
-    console.log(arrInstancesTasks[0])
 
 
 
@@ -124,8 +120,9 @@
         });
     }
 
-    function addTask(task) {
+    function addTask(taskName) {
         // adicione uma nova instancia de Task
+        arrInstancesTasks.push( new Task(taskName))
         renderTasks()
 
     }
@@ -170,7 +167,7 @@
             checkButton: function () {
 
                 // DEVE USAR O MÉTODO toggleDone do objeto correto
-
+                arrInstancesTasks[currentLiIndex].toggleDone()
                 renderTasks()
             }
         }
