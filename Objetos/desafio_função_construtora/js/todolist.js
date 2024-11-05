@@ -7,7 +7,16 @@
         // também recebe tres parametros opcionais (completed, createdAt, updatedAt) ok
         // o objeto retornado por essa funcao deve ter quatro propriedades:
         //  - name - string - obrigatório,
-        this.name = name
+        let _name = name
+        this.getName = () => {
+            return _name
+        }
+
+        this.setName = function(newName) {
+            _name = newName
+            this.updatedAt = Date.now()
+        }
+        // this.name = name
         //  - completed - boolean - opcional, false é o default, 
         this.completed = completed || false
         //  - createdAt - timestamp - opcional, timestamp atual é o valor default) 
@@ -75,7 +84,7 @@
         li.appendChild(checkButton)
 
         p.className = "task-name"
-        p.textContent = obj.name
+        p.textContent = obj.getName()
         li.appendChild(p)
 
         editButton.className = "fas fa-edit"
@@ -88,7 +97,7 @@
         const inputEdit = document.createElement("input")
         inputEdit.setAttribute("type", "text")
         inputEdit.className = "editInput"
-        inputEdit.value = obj.name
+        inputEdit.value = obj.getName()
 
         containerEdit.appendChild(inputEdit)
         const containerEditButton = document.createElement("button")
@@ -157,12 +166,12 @@
             },
             containerEditButton: function () {
                 const val = currentLi.querySelector(".editInput").value
-                arrInstancesTasks[currentLiIndex].name = val
+                arrInstancesTasks[currentLiIndex].setName(val)
                 renderTasks()
             },
             containerCancelButton: function () {
                 currentLi.querySelector(".editContainer").removeAttribute("style")
-                currentLi.querySelector(".editInput").value = arrInstancesTasks[currentLiIndex].name
+                currentLi.querySelector(".editInput").value = arrInstancesTasks[currentLiIndex].getName()
             },
             checkButton: function () {
 
