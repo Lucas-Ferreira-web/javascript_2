@@ -51,8 +51,8 @@ console.log(str1)
 
 let telefone = "91234-2345"
 function mascaraNumero(numero){
-    let numeroEdit = numero.slice(0, 1)
-    console.log(numeroEdit.padEnd(10, "*"))
+    let numeroEdit = numero.slice(0, 1).padEnd(5, "*") + "-" +  numero.slice(-2).padStart(4, "*")
+    console.log(numeroEdit)
 }
 
 mascaraNumero(telefone)
