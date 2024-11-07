@@ -27,6 +27,28 @@ console.log(srtAsObj)
 console.log(srtAsObj.valueOf())
 console.log(srtAsObj.toString())
 
+/*str1 = `
+     
+    teste
+               
+`*/
+console.log(str1)
+console.log("--------------------")
+console.log(str1.trim()) // remove todos os espaços
+console.log("--------------------")
+console.log(str1.trimEnd()) // remove espaços no final
+console.log("--------------------")
+console.log(str1.trimStart()) // remove espaços no começo
+console.log("--------------------")
+console.log(str1)
+
+str1 = "0123456789"
+console.log(str1.padEnd(20)) // coloca um preenchimento na variavel
+console.log(str1.padEnd(20, "*")) // coloca um preenchimento na variavel no final
+//console.log(str1.padStart(20, "*")) // coloca um preenchimento na variavel no inicio
+console.log(str1.padEnd(20, "*").length)
+console.log(str1)
+
 
 
 /*
