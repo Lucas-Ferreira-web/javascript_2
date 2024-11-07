@@ -49,6 +49,15 @@ console.log(str1.padEnd(20, "*")) // coloca um preenchimento na variavel no fina
 console.log(str1.padEnd(20, "*").length)
 console.log(str1)
 
+let telefone = "91234-2345"
+function mascaraNumero(numero){
+    let numeroEdit = numero.slice(0, 1)
+    console.log(numeroEdit.padEnd(10, "*"))
+}
+
+mascaraNumero(telefone)
+// console.log(telefone)
+
 
 
 /*
