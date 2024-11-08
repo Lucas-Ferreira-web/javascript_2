@@ -75,6 +75,12 @@ let str2 = "Hoje é sabado"
 console.log(str2.startsWith("Hoje")) // verifica se a string começa com determinado caractere
 console.log(str2.endsWith("hoje")) // verifica se a string termina com determinado caractere
 
+let str3 = "abcdefgh"
+console.log(str3.charAt(1)) // mostra o valor q está no indice passado por parametro
+console.log(str3[1])
+console.log(str3.charCodeAt(0)) // mostra o numero na tabela de codigo dos caracterers
+console.log(str3.charCodeAt(1))
+
 
 
 /*
