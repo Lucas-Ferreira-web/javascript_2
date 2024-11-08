@@ -49,14 +49,31 @@ console.log(str1.padEnd(20, "*")) // coloca um preenchimento na variavel no fina
 console.log(str1.padEnd(20, "*").length)
 console.log(str1)
 
-let telefone = "91234-2345"
-function mascaraNumero(numero){
-    let numeroEdit = numero.slice(0, 1).padEnd(5, "*") + "-" +  numero.slice(-2).padStart(4, "*")
-    console.log(numeroEdit)
-}
+//desafio mascara numero
+// let telefone = "91234-2345"
+// function mascaraNumero(numero){
+//     let numeroEdit = numero.slice(0, 1).padEnd(5, "*") + "-" +  numero.slice(-2).padStart(4, "*")
+//     console.log(numeroEdit)
+// }
+//mascaraNumero(telefone)
 
-mascaraNumero(telefone)
-// console.log(telefone)
+// correção do desafio
+let telefone1 = "91234-2345" //"9****-**45"
+let telefone2 = "1234-2345"  //"1***-**45"
+function mascararTelefone(numero) {
+    let hifemPosicao = numero.indexOf("-")
+    let numeroInicio = numero.slice(0, hifemPosicao)
+    let numeroFinal = numero.slice(hifemPosicao + 1)
+    let doisUltimosNumeros = numeroFinal.slice(-2)
+    return `${numeroInicio[0].padEnd(numeroInicio.length, "*")}-${doisUltimosNumeros.padStart(numeroFinal.length, "*")}`
+
+}
+console.log(mascararTelefone(telefone1))
+console.log(mascararTelefone(telefone2))
+
+let str2 = "Hoje é sabado"
+console.log(str2.startsWith("Hoje")) // verifica se a string começa com determinado caractere
+console.log(str2.endsWith("hoje")) // verifica se a string termina com determinado caractere
 
 
 
