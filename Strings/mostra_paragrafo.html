@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://fontawesome.com/icons/chevron-up?f=classic&s=solid" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
 		integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -100,14 +99,40 @@
             const textoParagrafos = elementoParagrafos.map( paragrafo => paragrafo.innerText)
             const caracterMax = 100
 
-            elementoParagrafos.forEach( _paragrafo => {
+            elementoParagrafos.forEach( (_paragrafo, ind) => {
                 if(_paragrafo.innerText.length > caracterMax){
                     _paragrafo.textContent = _paragrafo.innerHTML.substring(0, caracterMax) + "..."
-                }
 
-                const btn = document.createElement("button")
-                btn.innerHTML = '<i class="fa-solid fa-chevron-down"></i>'
+					const btn = document.createElement("button")
+					btn.innerHTML = '<i class="fas fa-chevron-down"></i>'
+					_paragrafo.parentElement.classList.add("text-hidden")
+
+					// btn.addEventListener("click", mostraTexto)
+					btn.addEventListener("click", function (evento){
+						mostraTexto(evento, _paragrafo, ind)
+					})
+
+					_paragrafo.parentElement.appendChild(btn)
+					}
+
+
             })
+
+			function mostraTexto(evento, paragrf, indice){
+				console.log(evento.currentTarget)
+
+				const card = evento.currentTarget.parentElement
+
+				card.classList.toggle("text-hidden")
+				evento.currentTarget.querySelector("i").classList.toggle("fa-chevron-down")
+				evento.currentTarget.querySelector("i").classList.toggle("fa-chevron-up")
+
+				if(card.classList.contains("text-hidden")){
+					card.querySelector("p").textContent = textoParagrafos[indice].substring(0, caracterMax) + "..."
+				} else {
+					card.querySelector("p").textContent = textoParagrafos[indice]
+				}
+			}
 
         // })()
 
