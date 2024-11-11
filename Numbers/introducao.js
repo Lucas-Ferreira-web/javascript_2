@@ -23,3 +23,9 @@ console.log(numero.toLocaleString())
 console.log(numero.toLocaleString("pt-BR"))
 console.log(numero.toLocaleString("pt-BR", {style: "currency", currency: "BRL"}))
 console.log(numero.toLocaleString("pt-PT", {style: "currency", currency: "EUR"}))
+
+console.log(Number.MAX_VALUE)
+console.log(Number.MIN_VALUE)
+
+let numeroAsString = "3.456"
+console.log(isNaN(numeroAsString)) // se for true é um NaN, se não ele pd ser convertido para numero
