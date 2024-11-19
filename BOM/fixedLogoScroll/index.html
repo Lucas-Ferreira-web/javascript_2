@@ -69,14 +69,28 @@
 
     <script>
 
+        // (function () {
+        //     const corpo = document.querySelector("body")
+        //     window.addEventListener("scroll", function(){
+        //         console.log("adiciona")
+        //         corpo.classList.add("fx")
+        //         if(parseInt(pageYOffset) < 100){
+        //             console.log("remove")
+        //             corpo.classList.remove("fx")
+        //         }
+        //     })
+        // })()
+
+        //correção
         (function () {
-            const corpo = document.querySelector("body")
-            window.addEventListener("scroll", function(){
-                console.log("adiciona")
-                corpo.classList.add("fx")
-                if(parseInt(pageYOffset) < 100){
-                    console.log("remove")
-                    corpo.classList.remove("fx")
+            const bodyFx = document.getElementsByClassName("fx")
+
+            window.addEventListener("scroll", function () {
+
+                if (pageYOffset > 150 && !bodyFx[0]) {
+                    document.body.classList.add("fx")
+                } else if (pageYOffset <= 150 && bodyFx[0]) {
+                    document.body.classList.remove("fx")
                 }
             })
         })()
